@@ -1,0 +1,25 @@
+\name{as.dendro}
+\alias{as.dendro}
+\title{Coerces object to class dendro.}
+\usage{
+  as.dendro(segments, labels, leaf_labels = NULL, class)
+}
+\arguments{
+  \item{segments}{data.frame with segment data}
+
+  \item{labels}{data.frame with labels data}
+
+  \item{leaf_labels}{data.frame with leaf label data}
+
+  \item{class}{The class of the original model object, e.g.
+  "hclust".  This is used by \code{\link{ggdendrogram}} to
+  determine the angle and jutification of labels}
+}
+\description{
+  Method for coercing object to class dendro.
+}
+\seealso{
+  \code{\link{dendro_data}} and
+  \code{\link{ggdendro-package}}
+}
+
