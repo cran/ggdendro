@@ -1,5 +1,5 @@
 #
-#  ggdendro/R/dendro_rpart.R by Andrie de Vries and Brian Ripley Copyright (C) 2011-2013
+#  ggdendro/R/dendro_rpart.R by Andrie de Vries and Brian Ripley Copyright (C) 2011-2015
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -124,9 +124,9 @@ labels.rpart <- function(object, digits = 4, minlength = 1L, pretty,
 }
 
 
-# rpart_env -------------------------------------------------------------------
+# rpart_ggdendro_env -------------------------------------------------------------------
 
-rpart_env <- new.env()
+rpart_ggdendro_env <- new.env()
 
 
 # rpart.branch ------------------------------------------------------------
@@ -141,9 +141,9 @@ rpart.branch <- function(x, y, node, branch)
 {
   if (missing(branch)) {
     pn <- paste0("device", dev.cur())
-    if (!exists(pn, envir = rpart_env, inherits = FALSE))
+    if (!exists(pn, envir = rpart_ggdendro_env, inherits = FALSE))
       stop("no information available on parameters from previous call to plot()")
-    parms <- get(pn, envir = rpart_env, inherits = FALSE)
+    parms <- get(pn, envir = rpart_ggdendro_env, inherits = FALSE)
     branch <- parms$branch
   }
   
@@ -181,9 +181,9 @@ rpartco <- function(tree, parms)
 {
   if (missing(parms)) {
     pn <- paste0("device", dev.cur())
-    if (!exists(pn, envir = rpart_env, inherits = FALSE))
+    if (!exists(pn, envir = rpart_ggdendro_env, inherits = FALSE))
       stop("no information available on parameters from previous call to plot()")
-    parms <- get(pn, envir = rpart_env, inherits = FALSE)
+    parms <- get(pn, envir = rpart_ggdendro_env, inherits = FALSE)
   }
   
   frame <- tree$frame

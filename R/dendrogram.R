@@ -1,6 +1,6 @@
 #
-#  ggdendro/R/dendro_tree.R by Andrie de Vries  Copyright (C) 2011-2013
-#  Contains code adapted from stats/hclust.R Copyright (C) 1995-2012 The R Core Team
+#  ggdendro/R/dendro_tree.R by Andrie de Vries  Copyright (C) 2011-2015
+#  Contains code adapted from stats/hclust.R Copyright (C) 1995-2015 The R Core Team
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -21,51 +21,23 @@
 
 #' Extract line segment and label data from dendrogram or hclust object.
 #' 
-#' Extract line segment and label data from dendrogram or hclust object.  Results are stored in a
-#' list of data frames containing line segment data and label data.
+#' Extract line segment and label data from \code{\link[stats]{dendrogram}} or \code{\link[stats]{hclust}} object.  The resulting object is a list of data frames containing line segment data and label data.
 #' 
-#' @param model object of class "dendrogram", e.g. the output of as.dendrogram()
-#' @param type The type of plot, indicating the shape of the dendrogram.  "rectangle" will draw
-#' rectangular lines, while "triangle" will draw triangular lines.
-#' @param ... ignored
-#' @aliases dendro_data.dendrogram dendro_data.hclust
-#' @method dendro_data dendrogram
-#' @method dendro_data hclust
-#' @export dendro_data.dendrogram dendro_data.hclust
+# @param model object of class "dendrogram", e.g. the output of as.dendrogram()
+#' @param type The type of plot, indicating the shape of the dendrogram.  "rectangle" will draw rectangular lines, while "triangle" will draw triangular lines.
+# @param ... ignored
+#' @export
 #' @return
-#' A list with the following elements:
+#' A list with components:
 #' \item{segments}{Line segment data}
 #' \item{labels}{Label data}
+#' 
 #' @seealso \code{\link{ggdendrogram}}
+#' @rdname dendro_data
 #' @family dendro_data methods
 #' @family dendrogram/hclust functions
-#' @examples
-#' require(ggplot2)
-#' #
-#' # Demonstrate dendro_data.dendrogram
-#' #
-#' hc <- hclust(dist(USArrests), "ave")
-#' dhc <- as.dendrogram(hc)
-#' # Rectangular lines
-#' ddata <- dendro_data(dhc, type="rectangle")
-#' ggplot(segment(ddata)) + geom_segment(aes(x=x, y=y, xend=xend, yend=yend)) + 
-#' 		coord_flip() + scale_y_reverse(expand=c(0.2, 0)) + theme_dendro()
-#' # Triangular lines
-#' ddata <- dendro_data(dhc, type="triangle")
-#' ggplot(segment(ddata)) + geom_segment(aes(x=x, y=y, xend=xend, yend=yend)) + theme_dendro()
-#' #
-#' # Demonstrate dendro_data.hclust
-#' #
-#' require(ggplot2)
-#' hc <- hclust(dist(USArrests), "ave")
-#' # Rectangular lines
-#' hcdata <- dendro_data(hc, type="rectangle")
-#' ggplot(segment(hcdata)) + geom_segment(aes(x=x, y=y, xend=xend, yend=yend)) + 
-#'    coord_flip() + scale_y_reverse(expand=c(0.2, 0)) + theme_dendro()
-#' # Triangular lines
-#' hcdata <- dendro_data(hc, type="triangle")
-#' ggplot(segment(hcdata)) + geom_segment(aes(x=x, y=y, xend=xend, yend=yend)) +
-#'   theme_dendro()
+#' @example inst/examples/example_dendro_data.R
+#' 
 dendro_data.dendrogram <- function (model, type = c("rectangle", "triangle"), ...){
 	hcdata <- dendrogram_data(model, type=type, ...)
 	as.dendro(
@@ -75,7 +47,22 @@ dendro_data.dendrogram <- function (model, type = c("rectangle", "triangle"), ..
   	)
 } 
 
+#' @rdname dendro_data
+#' @export
 dendro_data.hclust <- function (model, type = c("rectangle", "triangle"), ...){
+  dhc <- as.dendrogram(model)
+  hcdata <- dendrogram_data(dhc, type=type, ...)
+  as.dendro(
+      segments = hcdata$segments,
+      labels = hcdata$labels,
+      class="hclust"
+  )
+} 
+
+#' @rdname dendro_data
+#' @example inst/examples/example_dendro_twins.R
+#' @export
+dendro_data.twins <- function (model, type = c("rectangle", "triangle"), ...){
   dhc <- as.dendrogram(model)
   hcdata <- dendrogram_data(dhc, type=type, ...)
   as.dendro(

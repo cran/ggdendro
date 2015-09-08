@@ -1,5 +1,5 @@
 #
-#  ggdendro/R/dendro_rpart.R by Andrie de Vries  Copyright (C) 2011-2013
+#  ggdendro/R/dendro_rpart.R by Andrie de Vries  Copyright (C) 2011-2015
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -34,26 +34,18 @@
 #' @param margin an extra fraction of white space to leave around the borders of the tree. (Long labels sometimes get cut off by the default computation).
 #' @param minbranch	set the minimum length for a branch to minbranch times the average branch length. This parameter is ignored if uniform=TRUE. Sometimes a split will give very little improvement, or even (in the classification case) no improvement at all. A tree with branch lengths strictly proportional to improvement leaves no room to squeeze in node labels.
 #' @param ... ignored
-#' @method dendro_data rpart
 #' @export
 #' @return
 #' A list of three data frames:
 #' \item{segments}{a data frame containing the line segment data}
 #' \item{labels}{a data frame containing the label text data}
 #' \item{leaf_labels}{a data frame containing the leaf label text data}
+#' 
 #' @seealso \code{\link{ggdendrogram}}
 #' @family dendro_data methods
 #' @family rpart functions
-#' @examples
-#' require(rpart)
-#' require(ggplot2)
-#' fit <- rpart(Kyphosis ~ Age + Number + Start, method="class", data=kyphosis)
-#' fitr <- dendro_data(fit)
-#' ggplot() + 
-#'     geom_segment(data=fitr$segments, aes(x=x, y=y, xend=xend, yend=yend)) + 
-#'     geom_text(data=fitr$labels, aes(x=x, y=y, label=label)) +
-#'     geom_text(data=fitr$leaf_labels, aes(x=x, y=y, label=label)) +
-#'     theme_dendro()
+#' @example inst/examples/example_dendro_rpart.R
+#' 
 dendro_data.rpart <- function(model, uniform = FALSE, branch = 1, compress = FALSE,
                               nspace, margin = 0, minbranch = 0.3, ...){
   x <- model
@@ -62,7 +54,7 @@ dendro_data.rpart <- function(model, uniform = FALSE, branch = 1, compress = FAL
   
   if (compress & missing(nspace)) nspace <- branch
   if (!compress) nspace <- -1L     # means no compression
-  ## if (dev.cur() == 1L) dev.new() # not needed in R
+  if(!interactive()) if (dev.cur() == 1L) dev.new() # not needed in R
   
   parms <- list(uniform = uniform, branch = branch, nspace = nspace,
                 minbranch = minbranch)
@@ -75,7 +67,7 @@ dendro_data.rpart <- function(model, uniform = FALSE, branch = 1, compress = FAL
   temp2 <- range(yy) + diff(range(yy)) * c(-margin, margin)
 #   plot(temp1, temp2, type = "n", axes = FALSE, xlab = "", ylab = "", ...)
   ## Save information per device, once a new device is opened.
-   assign(paste0("device", dev.cur()), parms, envir = rpart_env)
+   assign(paste0("device", dev.cur()), parms, envir = rpart_ggdendro_env)
   
   # Draw a series of horseshoes or V's, left son, up, down to right son
   #   NA's in the vector cause lines() to "lift the pen"

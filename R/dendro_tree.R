@@ -1,6 +1,6 @@
 #
-#  ggdendro/R/dendro_tree.R by Andrie de Vries  Copyright (C) 2011-2013
-#  Contains code from tree/R/tree.R by B. D. Ripley  Copyright (C) 1994-2012
+#  ggdendro/R/dendro_tree.R by Andrie de Vries  Copyright (C) 2011-2015
+#  Contains code from tree/R/tree.R by B. D. Ripley  Copyright (C) 1994-2015
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -27,33 +27,18 @@ tree_env <- new.env()
 #' @param model object of class "tree", e.g. the output of tree()
 #' @param type Either \code{proportional} or \code{uniform}. If this partially matches "uniform", the branches are of uniform length. Otherwise they are proportional to the decrease in impurity.
 #' @param ... ignored
-#' @method dendro_data tree
 #' @export
 #' @return
 #' A list of three data frames:
 #' \item{segments}{a data frame containing the line segment data}
 #' \item{labels}{a data frame containing the label text data}
 #' \item{leaf_labels}{a data frame containing the leaf label text data}
+#' 
 #' @seealso \code{\link{ggdendrogram}}
 #' @family dendro_data methods
 #' @family tree functions
 #' @author Andrie de Vries, using code modified from original by Brian Ripley
-#' @examples
-#' require(tree)
-#' require(ggplot2)
-#' require(MASS)
-#' data(cpus, package="MASS")
-#' cpus.ltr <- tree(log10(perf) ~ syct+mmin+mmax+cach+chmin+chmax, cpus)
-#' tree_data <- dendro_data(cpus.ltr)
-#' ggplot(segment(tree_data)) +
-#' 	geom_segment(aes(x=x, y=y, xend=xend, yend=yend, size=n), 
-#' 		colour="lightblue") +
-#' 	scale_size("n") +
-#' 	geom_text(data=label(tree_data), 
-#' 		aes(x=x, y=y, label=label), vjust=-0.5, size=4) +
-#' 	geom_text(data=leaf_label(tree_data), 
-#' 		aes(x=x, y=y, label=label), vjust=0.5, size=3) +
-#'  theme_dendro()
+#' @example inst/examples/example_dendro_tree.R
 dendro_data.tree <- function(model, type = c("proportional", "uniform"), ...){
   type <- match.arg(type)
   uniform <- type == "uniform"

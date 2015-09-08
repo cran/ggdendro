@@ -1,5 +1,5 @@
 #
-#  ggdendro/R/dendro_tree.R by Andrie de Vries  Copyright (C) 2011-2013
+#  ggdendro/R/dendro_tree.R by Andrie de Vries  Copyright (C) 2011-2015
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -19,18 +19,15 @@
 
 #' Extract cluster data from a model into a list of data frames.
 #' 
-#' This function provides a generic mechanism to extract relevant plotting data, 
-#' typically line segments and labels, from a variety of cluster models.
+#' This function provides a generic mechanism to extract relevant plotting data, typically line segments and labels, from a variety of cluster models. 
 #' 
-#' In the case of dendrograms and tree models, the function will extract line 
-#' segment data and labels.
+#' For \code{\link[stats]{dendrogram}} and \code{\link[tree]{tree}} models, extracts line segment data and labels.
 #' 
-#' In the case of kmeans or Mclust models, the function extracts the cluster allocation.
 #' 
-#' @param model object of type hclust, dendrogram, tree or kmeans
+#' @param model object of type \code{\link[stats]{hclust}}, \code{\link[stats]{dendrogram}} or \code{\link[tree]{tree}}
 #' @param ... ignored
 #' @export dendro_data dendro_data.default
-#' @aliases dendro_data.default
+# @aliases dendro_data.default
 #' @return a list of data frames that contain the data appropriate to each cluster model
 #' @seealso 
 #' There are several implementations for specific cluster algorithms:
@@ -43,14 +40,16 @@
 #' }
 #' To extract the data for line segments, labels or leaf labels use:
 #' \itemize{
-#' \item{\code{\link{segment}}}{the line segment data}
-#' \item{\code{\link{label}}}{the text for each end segment}
-#' \item{\code{\link{leaf_label}}}{the leaf labels of a tree diagram}
+#' \item{\code{\link{segment}}}: {the line segment data}
+#' \item{\code{\link{label}}}: {the text for each end segment}
+#' \item{\code{\link{leaf_label}}}: {the leaf labels of a tree diagram}
 #' }
 dendro_data <- function(model, ...){
 	UseMethod("dendro_data", model)
 }
 
+#' @rdname dendro_data
+#' @export
 dendro_data.default <- function(model, ...){
   x <- class(model)
   stop(paste("No dendro_data method defined for class", x))
@@ -62,7 +61,7 @@ dendro_data.default <- function(model, ...){
 #' Is a dendro?  Tests whether an object is of class dendro.
 #' 
 #' @param x Object to check
-#' @method is dendro
+#' @export
 #' @seealso \code{\link{dendro_data}} and \code{\link{ggdendro-package}}
 is.dendro <- function(x){
   inherits(x, "dendro")
