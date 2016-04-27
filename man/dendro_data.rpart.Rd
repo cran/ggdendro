@@ -5,7 +5,7 @@
 \title{Extract data from classification tree object for plotting using ggplot.}
 \usage{
 \method{dendro_data}{rpart}(model, uniform = FALSE, branch = 1,
-  compress = FALSE, nspace, margin = 0, minbranch = 0.3, ...)
+  compress = FALSE, nspace, minbranch = 0.3, ...)
 }
 \arguments{
 \item{model}{object of class "tree", e.g. the output of tree()}
@@ -17,8 +17,6 @@
 \item{compress}{if FALSE, the leaf nodes will be at the horizontal plot coordinates of 1:nleaves. If TRUE, the routine attempts a more compact arrangement of the tree. The compaction algorithm assumes uniform=TRUE; surprisingly, the result is usually an improvement even when that is not the case.}
 
 \item{nspace}{the amount of extra space between a node with children and a leaf, as compared to the minimal space between leaves. Applies to compressed trees only. The default is the value of branch.}
-
-\item{margin}{an extra fraction of white space to leave around the borders of the tree. (Long labels sometimes get cut off by the default computation).}
 
 \item{minbranch}{set the minimum length for a branch to minbranch times the average branch length. This parameter is ignored if uniform=TRUE. Sometimes a split will give very little improvement, or even (in the classification case) no improvement at all. A tree with branch lengths strictly proportional to improvement leaves no room to squeeze in node labels.}
 
