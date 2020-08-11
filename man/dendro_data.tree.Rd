@@ -9,7 +9,9 @@
 \arguments{
 \item{model}{object of class "tree", e.g. the output of tree()}
 
-\item{type}{Either \code{proportional} or \code{uniform}. If this partially matches "uniform", the branches are of uniform length. Otherwise they are proportional to the decrease in impurity.}
+\item{type}{Either \code{proportional} or \code{uniform}. If this partially matches
+"uniform", the branches are of uniform length. Otherwise they are
+proportional to the decrease in impurity.}
 
 \item{...}{ignored}
 }
@@ -20,39 +22,51 @@ A list of three data frames:
 \item{leaf_labels}{a data frame containing the leaf label text data}
 }
 \description{
-Extracts data to plot line segments and labels from a \code{\link[tree]{tree}} object.  This data can then be manipulated or plotted, e.g. using \code{\link[ggplot2]{ggplot}}.
+Extracts data to plot line segments and labels from a \code{tree::tree()} object.
+This data can then be manipulated or plotted, e.g. using \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \examples{
 ### Demonstrate tree
 
-if(require(tree)){
+if (require(tree)) {
   require(ggplot2)
   require(MASS)
-  data(cpus, package="MASS")
-  cpus.ltr <- tree(log10(perf) ~ syct+mmin+mmax+cach+chmin+chmax, cpus)
+  data(cpus, package = "MASS")
+  cpus.ltr <- tree(log10(perf) ~ syct + mmin + mmax + cach + chmin + chmax, 
+                   data = cpus)
   tree_data <- dendro_data(cpus.ltr)
   ggplot(segment(tree_data)) +
-    geom_segment(aes(x=x, y=y, xend=xend, yend=yend, size=n), 
-                 colour="lightblue") +
+    geom_segment(aes(x = x, y = y, xend = xend, yend = yend, size = n),
+      colour = "lightblue"
+    ) +
     scale_size("n") +
-    geom_text(data=label(tree_data), 
-              aes(x=x, y=y, label=label), vjust=-0.5, size=4) +
-    geom_text(data=leaf_label(tree_data), 
-              aes(x=x, y=y, label=label), vjust=0.5, size=3) +
+    geom_text(
+      data = label(tree_data),
+      aes(x = x, y = y, label = label), vjust = -0.5, size = 4
+    ) +
+    geom_text(
+      data = leaf_label(tree_data),
+      aes(x = x, y = y, label = label), vjust = 0.5, size = 3
+    ) +
     theme_dendro()
 }
+}
+\seealso{
+\code{\link[=ggdendrogram]{ggdendrogram()}}
+
+Other dendro_data methods: 
+\code{\link{dendro_data.rpart}()},
+\code{\link{dendro_data}()},
+\code{\link{dendrogram_data}()},
+\code{\link{rpart_labels}()}
+
+Other tree functions: 
+\code{\link{get_data_tree_leaf_labels}()},
+\code{\link{tree_labels}()},
+\code{\link{tree_segments}()}
 }
 \author{
 Andrie de Vries, using code modified from original by Brian Ripley
 }
-\seealso{
-\code{\link{ggdendrogram}}
-
-Other dendro_data methods: \code{\link{dendro_data.rpart}},
-  \code{\link{dendro_data}}, \code{\link{dendrogram_data}},
-  \code{\link{rpart_labels}}
-
-Other tree functions: \code{\link{get_data_tree_leaf_labels}},
-  \code{\link{tree_labels}}, \code{\link{tree_segments}}
-}
-
+\concept{dendro_data methods}
+\concept{tree functions}

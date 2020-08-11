@@ -14,14 +14,16 @@ get_data_tree_leaf_labels(model, uniform, ...)
 \description{
 Extract labels data frame from tree object for plotting using ggplot
 }
+\seealso{
+\code{\link[=ggdendrogram]{ggdendrogram()}}
+
+Other tree functions: 
+\code{\link{dendro_data.tree}()},
+\code{\link{tree_labels}()},
+\code{\link{tree_segments}()}
+}
 \author{
 Code modified from original by Brian Ripley
 }
-\seealso{
-\code{\link{ggdendrogram}}
-
-Other tree functions: \code{\link{dendro_data.tree}},
-  \code{\link{tree_labels}}, \code{\link{tree_segments}}
-}
+\concept{tree functions}
 \keyword{internal}
-
