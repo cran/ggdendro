@@ -1,6 +1,6 @@
-fc3612c7b73e98dfdb58a12ec7fa147a *DESCRIPTION
+26225a0cb30c537ede86a24d1c02dfb2 *DESCRIPTION
 fa527d7cba1e17dd5054db0147dc7675 *NAMESPACE
-7ba0909182ac07fc2d6b09f2f843c1dd *NEWS
+bcd5f37fcf5d8c290053fde12930fd80 *NEWS
 e853b9de25301c8e0814b5d954dc0122 *R/dendro_data.R
 f065406dac3ab033d83afafbc67a8d88 *R/dendro_rpart.R
 4a37e364a61d96a490954f12e37a3d50 *R/dendro_tree.R
@@ -12,7 +12,7 @@ b975f0e1e57d0a10d240d2252082d1cc *R/dendrogram.R
 67be7805508e0fe183f9ec9be4d4f496 *inst/WORDLIST
 a41ec87e470835e73a07a4007367e14a *inst/doc/ggdendro.R
 1f095b6d3777bb1bc72eee262597da0d *inst/doc/ggdendro.Rmd
-0c222629a4377d5574af4bc245031a07 *inst/doc/ggdendro.html
+ff544e9af6fdf9be53aae1b48837664b *inst/doc/ggdendro.html
 0c03b8ea45750f6101c195c38838e520 *inst/examples/example_dendro_data.R
 078dffd17c1eeec5da5d7da7ec8b762f *inst/examples/example_dendro_rpart.R
 27440640e2db3bbb7caafe429a76acbc *inst/examples/example_dendro_tree.R
@@ -43,10 +43,10 @@ affa55389e07454fb291df0dc94242ed *man/tree_segments.Rd
 2720ed6b0b94b204b6f22bc2178d5d38 *man/treeco.Rd
 dbd9bab057163c01c320d0b9d3bb9620 *tests/spelling.R
 05faaa26dbe06cfce371de175e68c93e *tests/testthat.R
-8c87c4b9b23ec78d51f04bdd07e24e2b *tests/testthat/test-1-dendrogram.R
-f5aca4c35acf3b1bb9025ef1c4990571 *tests/testthat/test-2-hclust.R
-33a3031a516e57ffbdf4f1937a3b44a7 *tests/testthat/test-3-rpart.R
-cf520bc3458197039908344b9eedd120 *tests/testthat/test-3-tree.R
-4f6d168ab7e32b91b691b1fce7cf6361 *tests/testthat/test-4-clusterplots.R
-53f24868799cb282685e922f47ba82c6 *tests/testthat/test-6-ggdendrogram.R
+4767a471e7c566bc4974491326b6b0ef *tests/testthat/test-1-dendrogram.R
+1c9556d63a144d9001530ff4e7cb9355 *tests/testthat/test-2-hclust.R
+8aafb76b98132056c503efdf27f80475 *tests/testthat/test-3-rpart.R
+21a2797d10112fba27b7205184f89316 *tests/testthat/test-3-tree.R
+d5c2823e56b20e6fe123f7dd899330b1 *tests/testthat/test-4-clusterplots.R
+2a75a475b64669401ec2224285075489 *tests/testthat/test-6-ggdendrogram.R
 1f095b6d3777bb1bc72eee262597da0d *vignettes/ggdendro.Rmd

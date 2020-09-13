@@ -1,5 +1,5 @@
 Package: ggdendro
-Version: 0.1.21
+Version: 0.1.22
 Title: Create Dendrograms and Tree Diagrams Using 'ggplot2'
 Description: This is a set of tools for dendrograms and
     tree plots using 'ggplot2'.  The 'ggplot2' philosophy is to
@@ -26,10 +26,11 @@ VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 Language: en-US
 Encoding: UTF-8
+Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2020-08-11 08:08:02 UTC; apdev
+Packaged: 2020-09-13 20:11:12 UTC; apdev
 Author: Andrie de Vries [aut, cre],
   Brian D. Ripley [aut] (author of package tree)
 Maintainer: Andrie de Vries <apdevries@gmail.com>
 Repository: CRAN
-Date/Publication: 2020-08-11 08:30:02 UTC
+Date/Publication: 2020-09-13 21:30:07 UTC
