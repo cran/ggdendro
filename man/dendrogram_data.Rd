@@ -9,8 +9,9 @@ dendrogram_data(x, type = c("rectangle", "triangle"), ...)
 \arguments{
 \item{x}{object of class "dendrogram", e.g. the output of as.dendrogram()}
 
-\item{type}{The type of plot, indicating the shape of the dendrogram.  "Rectangle" will draw
-rectangular lines, while "triangle" will draw triangular lines.}
+\item{type}{The type of plot, indicating the shape of the dendrogram:
+"rectangle" will draw rectangular lines, while "triangle" will draw
+triangular lines.}
 
 \item{...}{ignored}
 }
@@ -21,9 +22,9 @@ Extract data frame from dendrogram object for plotting using ggplot
 \code{\link[=ggdendrogram]{ggdendrogram()}}
 
 Other dendro_data methods: 
+\code{\link{dendro_data}()},
 \code{\link{dendro_data.rpart}()},
 \code{\link{dendro_data.tree}()},
-\code{\link{dendro_data}()},
 \code{\link{rpart_labels}()}
 
 Other dendrogram/hclust functions: 

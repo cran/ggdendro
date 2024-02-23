@@ -19,12 +19,13 @@ dendro_data(model, ...)
 \method{dendro_data}{twins}(model, type = c("rectangle", "triangle"), ...)
 }
 \arguments{
-\item{model}{object of type \code{\link[stats:hclust]{stats::hclust()}}, \code{\link[stats:dendrogram]{stats::dendrogram()}} or
-\code{tree::tree()}}
+\item{model}{object of class "dendrogram", e.g. the output of as.dendrogram()}
 
 \item{...}{ignored}
 
-\item{type}{The type of plot, indicating the shape of the dendrogram.  "rectangle" will draw rectangular lines, while "triangle" will draw triangular lines.}
+\item{type}{The type of plot, indicating the shape of the dendrogram.
+"rectangle" will draw rectangular lines, while "triangle" will draw
+triangular lines.}
 }
 \value{
 a list of data frames that contain the data appropriate to each
@@ -38,7 +39,9 @@ A list with components:
 This function provides a generic mechanism to extract relevant plotting data,
 typically line segments and labels, from a variety of cluster models.
 
-Extract line segment and label data from \code{\link[stats:dendrogram]{stats::dendrogram()}} or \code{\link[stats:hclust]{stats::hclust()}} object.  The resulting object is a list of data frames containing line segment data and label data.
+Extract line segment and label data from \code{\link[stats:dendrogram]{stats::dendrogram()}} or
+\code{\link[stats:hclust]{stats::hclust()}} object.  The resulting object is a list of data frames
+containing line segment data and label data.
 }
 \details{
 For \code{\link[stats:dendrogram]{stats::dendrogram()}} and \code{tree::tree()} models, extracts line segment
@@ -101,12 +104,19 @@ if (require(cluster)) {
 }
 \seealso{
 There are several implementations for specific cluster algorithms:
+\itemize{
+\item \code{\link[=dendro_data.hclust]{dendro_data.hclust()}}
+\item \code{\link[=dendro_data.dendrogram]{dendro_data.dendrogram()}}
+\item \code{\link[=dendro_data.tree]{dendro_data.tree()}}
+\item \code{\link[=dendro_data.rpart]{dendro_data.rpart()}}
+}
 
-\itemize{ \item \code{\link[=dendro_data.hclust]{dendro_data.hclust()}} \item \code{\link[=dendro_data.dendrogram]{dendro_data.dendrogram()}} \item
-\code{\link[=dendro_data.tree]{dendro_data.tree()}} \item \code{\link[=dendro_data.rpart]{dendro_data.rpart()}} } To extract the data for
-line segments, labels or leaf labels use: \itemize{ \item{\code{\link[=segment]{segment()}}}: {the
-line segment data} \item{\code{\link[=label]{label()}}}: {the text for each end segment}
-\item{\code{\link[=leaf_label]{leaf_label()}}}: {the leaf labels of a tree diagram} }
+To extract the data for line segments, labels or leaf labels use:
+\itemize{
+\item \code{\link[=segment]{segment()}}: the line segment data
+\item \code{\link[=label]{label()}}: the text for each end segment
+\item \code{\link[=leaf_label]{leaf_label()}}: the leaf labels of a tree diagram
+}
 
 \code{\link[=ggdendrogram]{ggdendrogram()}}
 
